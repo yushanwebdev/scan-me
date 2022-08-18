@@ -5,8 +5,6 @@ import {Provider} from 'react-redux';
 
 import {SCREENS} from '../../constants/screen';
 
-import * as Drawer from './drawer';
-import * as Dummy from './dummy';
 import * as Home from './home';
 import * as Settings from './settings';
 import * as Splash from './splash';
@@ -31,6 +29,4 @@ export function registerScreens(redux: any) {
   registerComponentWithRedux(redux)(SCREENS.Splash, Splash);
   registerComponentWithRedux(redux)(SCREENS.Home, Home);
   registerComponentWithRedux(redux)(SCREENS.Settings, Settings);
-  registerComponentWithRedux(redux)(SCREENS.Drawer, Drawer);
-  registerComponentWithRedux(redux)(SCREENS.Dummy, Dummy);
 }
