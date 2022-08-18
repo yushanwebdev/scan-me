@@ -1,17 +1,15 @@
+import {Box, Button, VStack} from 'native-base';
 import * as React from 'react';
-import {ScrollView, Text} from 'react-native';
-import {SafeAreaView} from 'react-native-safe-area-context';
-import {GLOBAL} from '../../styles/global';
 
 export interface Props {}
 
 const Settings: React.FC<Props> = () => {
   return (
-    <SafeAreaView style={GLOBAL.LAYOUT.SafeArea}>
-      <ScrollView style={GLOBAL.LAYOUT.pageContainer}>
-        <Text>Settings</Text>
-      </ScrollView>
-    </SafeAreaView>
+    <VStack justifyContent="center" alignItems="center" flex={1} safeArea>
+      <Box maxW="xs">
+        <Button onPress={() => {}}>Enable Biometric Authentication</Button>
+      </Box>
+    </VStack>
   );
 };
 
