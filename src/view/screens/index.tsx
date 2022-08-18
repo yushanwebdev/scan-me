@@ -1,3 +1,4 @@
+import {NativeBaseProvider} from 'native-base';
 import * as React from 'react';
 import {Navigation} from 'react-native-navigation';
 import {Provider} from 'react-redux';
@@ -16,9 +17,11 @@ const registerComponentWithRedux =
       name,
       () => (props: any) =>
         (
-          <Provider store={redux.store}>
-            <screen.default {...props} />
-          </Provider>
+          <NativeBaseProvider>
+            <Provider store={redux.store}>
+              <screen.default {...props} />
+            </Provider>
+          </NativeBaseProvider>
         ),
       () => screen.default,
     );
