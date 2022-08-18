@@ -7,11 +7,11 @@
 #define TIMEOUT_SECONDS 600
 #define TEXT_TO_LOOK_FOR @"Welcome to React Native!"
 
-@interface BlottNativeBoilerplateTests : XCTestCase
+@interface ScanMeTests : XCTestCase
 
 @end
 
-@implementation BlottNativeBoilerplateTests
+@implementation ScanMeTests
 
 - (BOOL)findSubviewInView:(UIView *)view matching:(BOOL(^)(UIView *view))test
 {

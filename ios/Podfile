@@ -3,7 +3,7 @@ require_relative '../node_modules/@react-native-community/cli-platform-ios/nativ
 
 platform :ios, '11.0'
 
-target 'BlottNativeBoilerplate' do
+target 'ScanMe' do
   config = use_native_modules!
   use_react_native!(
     :path => config[:reactNativePath],
@@ -11,7 +11,7 @@ target 'BlottNativeBoilerplate' do
     :hermes_enabled => false
   )
 
-  target 'BlottNativeBoilerplateTests' do
+  target 'ScanMeTests' do
     inherit! :complete
     # Pods for testing
   end
@@ -31,10 +31,10 @@ target 'BlottNativeBoilerplate' do
   end
 end
 
-# target 'BlottNativeBoilerplate-tvOS' do
-#   # Pods for BlottNativeBoilerplate-tvOS
+# target 'ScanMe-tvOS' do
+#   # Pods for ScanMe-tvOS
 
-#   target 'BlottNativeBoilerplate-tvOSTests' do
+#   target 'ScanMe-tvOSTests' do
 #     inherit! :complete
 #     # Pods for testing
 #   end
