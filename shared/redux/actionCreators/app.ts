@@ -14,3 +14,14 @@ export const splashLaunched = (): ThunkAction<
     });
   };
 };
+
+export const biometricStatusSetter = (
+  status: boolean,
+): ThunkAction<void, RootState, unknown, TAppAction> => {
+  return async dispatch => {
+    await dispatch({
+      type: AppActionType.BIOMETRIC_STATUS,
+      payload: status,
+    });
+  };
+};

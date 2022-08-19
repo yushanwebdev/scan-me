@@ -2,6 +2,7 @@ import {AppActionType, IAppState, TAppAction} from '../actionTypes/app';
 
 const initialState: IAppState = {
   isSplashLaunched: false,
+  biometricStatus: null,
 };
 
 export const appReducer = (
@@ -13,6 +14,11 @@ export const appReducer = (
       return {
         ...state,
         isSplashLaunched: true,
+      };
+    case AppActionType.BIOMETRIC_STATUS:
+      return {
+        ...state,
+        biometricStatus: action.payload,
       };
     default:
       return state;
