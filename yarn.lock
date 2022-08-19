@@ -8044,6 +8044,11 @@ react-native-keyboard-aware-scroll-view@^0.9.5:
     prop-types "^15.6.2"
     react-native-iphone-x-helper "^1.0.3"
 
+react-native-keychain@^8.1.1:
+  version "8.1.1"
+  resolved "https://registry.yarnpkg.com/react-native-keychain/-/react-native-keychain-8.1.1.tgz#3bb5e37946b964a7bcf7df2fe470dd244e01a340"
+  integrity sha512-8fxgeHKwGcL657eAYpdBTkDIxNhbIHI+kyyO0Yac2dgVAN184JoIwQcW2z6snahwDaCObQOu0biLFHnsH+4KSg==
+
 react-native-navigation@^7.23.1:
   version "7.23.1"
   resolved "https://registry.yarnpkg.com/react-native-navigation/-/react-native-navigation-7.23.1.tgz#11db7aa84cc8b0ea3f2492113e69d65a3d5a0be0"
