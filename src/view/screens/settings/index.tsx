@@ -1,21 +1,71 @@
-import {Box, Button, VStack} from 'native-base';
+import {Box, Button, Text, useToast, VStack} from 'native-base';
 import * as React from 'react';
-import {NativeModules} from 'react-native';
+import {Linking, NativeModules, Platform} from 'react-native';
 import {useDispatch} from 'react-redux';
 
 import * as Keychain from 'react-native-keychain';
+import {biometricStatusSetter} from '../../../../shared/redux/actionCreators/app';
 
 export interface Props {}
 
 const {RNSettingsOpen} = NativeModules;
 
+const defaultOptions = {
+  service: 'com.scanme',
+};
+
+const authOptions: Keychain.Options = {
+  accessible: Keychain.ACCESSIBLE.WHEN_UNLOCKED_THIS_DEVICE_ONLY,
+};
+
 const Settings: React.FC<Props> = () => {
   const dispatch = useDispatch();
+  const toast = useToast();
 
-  const onEnable = () => {
-    const type = Keychain.getSupportedBiometryType();
+  const onEnable = async () => {
+    try {
+      const type = await Keychain.getSupportedBiometryType();
 
-    console.log('type', type);
+      switch (type) {
+        case Keychain.BIOMETRY_TYPE.FACE_ID:
+          authOptions.accessControl =
+            Keychain.ACCESS_CONTROL.BIOMETRY_CURRENT_SET_OR_DEVICE_PASSCODE;
+          break;
+        case Keychain.BIOMETRY_TYPE.FINGERPRINT:
+          authOptions.accessControl =
+            Keychain.ACCESS_CONTROL.BIOMETRY_CURRENT_SET_OR_DEVICE_PASSCODE;
+          break;
+        default:
+          dispatch(biometricStatusSetter(false));
+          return Platform.OS === 'ios'
+            ? await Linking.openSettings()
+            : await RNSettingsOpen.openSettings();
+      }
+
+      toast.show({
+        render: () => {
+          return (
+            <Box bg="emerald.500" px="2" py="1" rounded="sm">
+              <Text color="white">Successful</Text>
+            </Box>
+          );
+        },
+      });
+
+      await Keychain.setInternetCredentials(
+        'scan-me-server',
+        'yushan',
+        'Swegvff%$22%^3673',
+        {
+          ...defaultOptions,
+          ...authOptions,
+        },
+      );
+
+      dispatch(biometricStatusSetter(true));
+    } catch (error) {
+      console.log('error', error);
+    }
   };
 
   // const onEnableBiometric = async () => {

@@ -8,6 +8,7 @@ import {SCREENS} from '../../constants/screen';
 import * as Home from './home';
 import * as Settings from './settings';
 import * as Splash from './splash';
+import * as SplashBiometrics from './splash-biometric';
 
 const registerComponentWithRedux =
   (redux: any) => (name: string, screen: any) => {
@@ -27,6 +28,7 @@ const registerComponentWithRedux =
 
 export function registerScreens(redux: any) {
   registerComponentWithRedux(redux)(SCREENS.Splash, Splash);
+  registerComponentWithRedux(redux)(SCREENS.SplashBiometrics, SplashBiometrics);
   registerComponentWithRedux(redux)(SCREENS.Home, Home);
   registerComponentWithRedux(redux)(SCREENS.Settings, Settings);
 }

@@ -1,8 +1,9 @@
 import {Navigation} from 'react-native-navigation';
 
+import * as Keychain from 'react-native-keychain';
 import store from '../../shared/redux/store';
 import {registerScreens} from '../view/screens';
-import {showSplash} from './navigation';
+import {showSplash, showSplashBiometric} from './navigation';
 
 /**
  * Register screens and components for react native navigation
@@ -16,6 +17,16 @@ registerScreens({store});
  *                 defined in './navigation'
  */
 const App = () => {
+  const checkBiometric = async () => {
+    const result = await Keychain.hasInternetCredentials('scan-me-server');
+
+    if (result) {
+      showSplashBiometric();
+    } else {
+      showSplash();
+    }
+  };
+
   Navigation.events().registerAppLaunchedListener(() => {
     Navigation.setDefaultOptions({
       /**
@@ -24,7 +35,7 @@ const App = () => {
       topBar: {visible: true, elevation: 0},
     });
 
-    showSplash();
+    checkBiometric();
   });
 };
 

@@ -3,6 +3,7 @@
  */
 const SCREENS = {
   Splash: 'Splash',
+  SplashBiometrics: 'SplashBiometrics',
   Home: 'Home',
   Settings: 'Settings',
   Drawer: 'Drawer',

@@ -19,6 +19,14 @@ export const showSplash = () => {
   });
 };
 
+export const showSplashBiometric = () => {
+  Navigation.setRoot({
+    root: {
+      component: {name: SCREENS.SplashBiometrics},
+    },
+  });
+};
+
 export const tabbedNavigation = () =>
   Navigation.setRoot({
     root: {
