@@ -19,34 +19,18 @@ const SplashBiometric: React.FC<Props> = () => {
   };
 
   const onLoginWithBiometrics = async () => {
-    const keychainObject = await Keychain.getInternetCredentials(
-      'scan-me-server',
-      {
-        ...defaultOptions,
-        accessControl:
-          Keychain.ACCESS_CONTROL.BIOMETRY_CURRENT_SET_OR_DEVICE_PASSCODE,
-      },
-    );
-
-    if (keychainObject) {
-      dispatch(biometricStatusSetter(true));
-      navigateToHome();
-    } else {
-      dispatch(biometricStatusSetter(false));
-    }
-  };
-
-  const onLoginWithDevicePasscode = async () => {
     try {
       const keychainObject = await Keychain.getInternetCredentials(
         'scan-me-server',
         {
           ...defaultOptions,
-          accessControl: Keychain.ACCESS_CONTROL.DEVICE_PASSCODE,
+          accessControl:
+            Keychain.ACCESS_CONTROL.BIOMETRY_CURRENT_SET_OR_DEVICE_PASSCODE,
         },
       );
 
       if (keychainObject) {
+        console.log('keychainObject', keychainObject);
         dispatch(biometricStatusSetter(true));
         navigateToHome();
       } else {
@@ -62,9 +46,6 @@ const SplashBiometric: React.FC<Props> = () => {
       <Center>
         <Stack space={4}>
           <Button onPress={onLoginWithBiometrics}>Login with Biometrics</Button>
-          <Button variant="subtle" onPress={onLoginWithDevicePasscode}>
-            Login with Pin
-          </Button>
         </Stack>
       </Center>
     </VStack>

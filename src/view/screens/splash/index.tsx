@@ -6,8 +6,8 @@ import {tabbedNavigation} from '../../../navigators/navigation';
 interface Props {}
 
 const Splash: React.FC<Props> = () => {
-  const navigateToHome = () => {
-    tabbedNavigation();
+  const navigateToHome = async () => {
+    await tabbedNavigation();
   };
 
   return (
