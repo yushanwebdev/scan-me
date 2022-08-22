@@ -3,6 +3,7 @@
 #import <React/RCTBundleURLProvider.h>
 #import <React/RCTRootView.h>
 #import <ReactNativeNavigation/ReactNativeNavigation.h>
+#import <RNKeychain/RNKeychainManager.h>
 
 #if DEBUG
 #import <FlipperKit/FlipperClient.h>
@@ -27,6 +28,19 @@ static void InitializeFlipper(UIApplication *application) {
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+  //Clear keychain on first run in case of reinstallation
+  if (![[NSUserDefaults standardUserDefaults] objectForKey:@"FirstRun"]) {
+        
+    RNKeychainManager * keychain = [[RNKeychainManager alloc] init];
+        
+    OSStatus result = [keychain deleteCredentialsForServer:@"scan-me-server"];
+        
+    [[NSUserDefaults standardUserDefaults] setValue:@"1strun" forKey:@"FirstRun"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    
+    NSLog(@"%d", result);
+  }
+  
   #if DEBUG
     InitializeFlipper(application);
   #endif
